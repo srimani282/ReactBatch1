@@ -5,6 +5,7 @@ function Component(props) {
     // console.log(props)
     return <>
         <h1>{comp}</h1>
+        <h1>hi good morning</h1>
         <h1>Inside Component</h1>
         <h1>Inside content</h1>
         <h4>Name : {user?.name}</h4>
