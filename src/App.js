@@ -5,6 +5,7 @@ import SimpleState from './SimpleState';
 import Form from './Form';
 import { Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
+import Users from './User';
 
 function App() {
   return (<div className="App">
@@ -13,6 +14,7 @@ function App() {
       <Route path="/" element={<Component user={{ name: "Sri MAni", email: "srimani@gmail.com", role: "dev" }} />} />
       <Route path="/state" element={<SimpleState />} />
       <Route path="/form" element={<Form />} />
+      <Route path="/users" element={<Users/>}/>
     </Routes>
   </div>
   );
