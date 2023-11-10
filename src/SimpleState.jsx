@@ -20,14 +20,12 @@ function SimpleState() {
       <span className={b%2==0 ? "even" : "odd"} style={{width:"100px", height:"100px"
       // backgroundColor: b%2==1 ? "red" : "green"
       }}>
-
          {
             b%2==0 ? 
             <h2>It is Even</h2>
             :
             <h2>It is odd</h2>
          }
-
       </span>
    </div>
    );
