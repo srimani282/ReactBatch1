@@ -9,6 +9,7 @@ import Users from './User';
 import Effetc from './Effet';
 import ChildToParent from './ChildToParent';
 import UILibrary from './UILibrary';
+import UIharika from './UIharika';
 
 function App() {
   return (<div className="App">
@@ -21,6 +22,7 @@ function App() {
       <Route path="/effect" element={<Effetc/>}/>
       <Route path="/childtoparent" element={<ChildToParent/>}/>
       <Route path='/ui-library' element={<UILibrary/>}/>
+      <Route path='/ui-harika' element={<UIharika/>}/>
     </Routes>
   </div>
   );
