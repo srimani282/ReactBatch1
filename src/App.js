@@ -8,6 +8,7 @@ import NavBar from './NavBar';
 import Users from './User';
 import Effetc from './Effet';
 import ChildToParent from './ChildToParent';
+import UILibrary from './UILibrary';
 
 function App() {
   return (<div className="App">
@@ -19,6 +20,7 @@ function App() {
       <Route path="/users" element={<Users/>}/>
       <Route path="/effect" element={<Effetc/>}/>
       <Route path="/childtoparent" element={<ChildToParent/>}/>
+      <Route path='/ui-library' element={<UILibrary/>}/>
     </Routes>
   </div>
   );
