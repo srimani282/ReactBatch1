@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar';
 import Users from './User';
 import Effetc from './Effet';
+import ChildToParent from './ChildToParent';
 
 function App() {
   return (<div className="App">
@@ -17,6 +18,7 @@ function App() {
       <Route path="/form" element={<Form />} />
       <Route path="/users" element={<Users/>}/>
       <Route path="/effect" element={<Effetc/>}/>
+      <Route path="/childtoparent" element={<ChildToParent/>}/>
     </Routes>
   </div>
   );
