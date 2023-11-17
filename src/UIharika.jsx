@@ -72,7 +72,6 @@ const rows = [
   createData('USA', 'US', 331002651, 9833517),
   createData('Brazil', 'BR', 212993603, 8515767),
   createData('Australia', 'AU', 25499884, 7692024),
-  // Add more countries as needed
 ];
 
 interface UIharikaProps {}
@@ -97,11 +96,7 @@ const UIharika: React.FC<UIharikaProps> = () => {
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle>Add Country</DialogTitle>
         <DialogContent>
-          {/* Add form or content for adding a new country */}
-        </DialogContent>
-      </Dialog>
-
-      <Paper sx={{ width: '100%' }}>
+        <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -148,6 +143,10 @@ const UIharika: React.FC<UIharikaProps> = () => {
           page={0}
         />
       </Paper>
+        </DialogContent>
+      </Dialog>
+
+     
     </>
   );
 };
