@@ -1,5 +1,6 @@
 
-import React from "react";
+import React, { useState } from 'react';
+import { Column } from '@ant-design/plots';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,71 +14,96 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 
-interface Column {
-  id: 'name' | 'code' | 'population' | 'size' | 'density';
-  label: string;
-  minWidth?: number;
-  align?: 'right';
-  format?: (value: number) => string;
-}
+const DemoColumn = () => {
+  const data = [
+    { type: 'india', sales: 402.82 },
+    { type: 'china', sales: 146.24 },
+    { type: 'italy', sales: 200.72 },
+    { type: 'usa', sales: 33.66 },
+    { type: 'brazil', sales: 25.01 },
+    { type: 'australia', sales: 3.32 },
+  ];
+  const config = {
+    data,
+    xField: 'type',
+    yField: 'sales',
+    label: {
+      position: 'middle',
+      style: {
+        fill: '#FFFFFF',
+        opacity: 0.6,
+      },
+    },
+    xAxis: {
+      label: {
+        autoHide: true,
+        autoRotate: false,
+      },
+    },
+    meta: {
+      type: {
+        alias: 'category',
+      },
+      sales: {
+        alias: 'category',
+      },
+    },
+  };
+  return <Column {...config} />;
+};
 
-interface Data {
-  name: string;
-  code: string;
-  population: number;
-  size: number;
-  density: number;
-}
+const DemoTable = () => {
+  const columns = [
+    { id: 'type', label: 'Type', minWidth: 100 },
+    { id: 'sales', label: 'Sales', minWidth: 100 },
+  ];
 
-function createData(
-  name: string,
-  code: string,
-  population: number,
-  size: number,
-): Data {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
+  const rows = [
+    { type: 'india', sales: 402.82 },
+    { type: 'china', sales: 146.24 },
+    { type: 'italy', sales: 200.72 },
+    { type: 'usa', sales: 33.66 },
+    { type: 'brazil', sales: 25.01 },
+    { type: 'australia', sales: 3.32 },
+  ];
 
-const columns: Column[] = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toFixed(2),
-  },
-];
+  return (
+    <Paper sx={{ width: '100%', marginRight: '20px' }}>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell key={column.id} style={{ minWidth: column.minWidth }}>
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow hover role="checkbox" tabIndex={-1} key={row.type}>
+                {columns.map((column) => (
+                  <TableCell key={column.id}>{row[column.id]}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={10}
+        page={0}
+      />
+    </Paper>
+  );
+};
 
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('USA', 'US', 331002651, 9833517),
-  createData('Brazil', 'BR', 212993603, 8515767),
-  createData('Australia', 'AU', 25499884, 7692024),
-];
-
-interface UIharikaProps {}
-
-const UIharika: React.FC<UIharikaProps> = () => {
-  const [openDialog, setOpenDialog] = React.useState(false);
+const UIharika = () => {
+  const [openDialog, setOpenDialog] = useState(false);
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -88,66 +114,25 @@ const UIharika: React.FC<UIharikaProps> = () => {
   };
 
   return (
-    <>
-      <Button variant="contained" onClick={handleOpenDialog}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Button variant="contained" size="large" onClick={handleOpenDialog}>
         Open Dialog
       </Button>
 
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
+      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="xl">
         <DialogTitle>Add Country</DialogTitle>
         <DialogContent>
-        <Paper sx={{ width: '100%' }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center" colSpan={2}>
-                  Country
-                </TableCell>
-                <TableCell align="center" colSpan={3}>
-                  Details
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                  {columns.map((column) => (
-                    <TableCell key={column.id} align={column.align}>
-                      {column.format && typeof row[column.id] === 'number'
-                        ? column.format(row[column.id])
-                        : row[column.id]}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={10}
-          page={0}
-        />
-      </Paper>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ flex: 1 }}>
+              <DemoColumn />
+            </div>
+            <div style={{ flex: 1 }}>
+              <DemoTable />
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
-
-     
-    </>
+    </div>
   );
 };
 
