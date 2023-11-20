@@ -9,6 +9,8 @@ import Users from './User';
 import Effetc from './Effet';
 import ChildToParent from './ChildToParent';
 import UILibrary from './UILibrary';
+import Graphs from './Graphs';
+import GraphApi from './GraphApi';
 import UIharika from './UIharika';
 import Graph from './Graph';
 
@@ -23,6 +25,8 @@ function App() {
       <Route path="/effect" element={<Effetc/>}/>
       <Route path="/childtoparent" element={<ChildToParent/>}/>
       <Route path='/ui-library' element={<UILibrary/>}/>
+      <Route path='/graphs' element={<Graphs/>}/>
+      <Route path='/graph-api' element={<GraphApi/>}/>
       <Route path='/ui-harika' element={<UIharika/>}/>
       <Route path='/Graph' element={<Graph/>}/>
     </Routes>
