@@ -37,6 +37,7 @@ function NavBar(props){
       </li>
       <li class="nav-item dropdown mr-3">
         <Link to="/graph-api">Graphs from api</Link>
+      </li>
      <li class="nav-item dropdown mr-3">
         <Link  to="/ui-harika">UI harika</Link>
       </li>
