@@ -11,6 +11,7 @@ import ChildToParent from './ChildToParent';
 import UILibrary from './UILibrary';
 import Graphs from './Graphs';
 import GraphApi from './GraphApi';
+import UIharika from './UIharika';
 
 function App() {
   return (<div className="App">
@@ -25,6 +26,7 @@ function App() {
       <Route path='/ui-library' element={<UILibrary/>}/>
       <Route path='/graphs' element={<Graphs/>}/>
       <Route path='/graph-api' element={<GraphApi/>}/>
+      <Route path='/ui-harika' element={<UIharika/>}/>
     </Routes>
   </div>
   );
