@@ -1,47 +1,88 @@
-import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import React, { useState, useEffect } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import { Pie } from '@ant-design/plots';
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'Name', headerName: 'Name', width: 130 },
-  { field: 'Address', headerName: 'Address', width: 130 },
-  { field: 'Email', headerName: 'Email', width: 130 },
-  { field: 'Phone', headerName: 'Phone', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-];
+const GraphApi = () => {
+  const [users, setUsers] = useState([]);
 
-const rows = [
-  { id: 1, Address: 'finland',Email:'jon12@gmail.com',Phone:'123456789',Name: 'Jon', age: 35 },
-  { id: 2, Address: 'switzerland',Email:'cersei132@gmail.com',Phone:'234567891' ,Name: 'Cersei', age: 42 },
-  { id: 3, Address: 'greenland',Email:'jaime1342@gmail.com',Phone:'923456781', Name: 'Jaime', age: 45 },
-  { id: 4, Address: 'england',Email:'arya4132@gmail.com',Phone:'234567801', Name: 'Arya', age: 16 },
-  { id: 5, Address: 'thailand',Email:'daenerys0532@gmail.com',Phone:'204567891' , Name: 'Daenerys', age: 50 },
-  { id: 6, Address: 'newzealand',Email:'tyron132@gmail.com',Phone:'234507891', Name: 'tyron', age: 40 },
-  { id: 7, Address: 'netherlands',Email:'ferrara1302@gmail.com',Phone:'204567891', Name: 'Ferrara', age: 44 },
-  { id: 8, Address: 'ireland',Email:'rossini032@gmail.com',Phone:'234517891', Name: 'Rossini', age: 36 },
-  { id: 9, Address: 'scotland',Email:'harvey139@gmail.com',Phone:'234967891', Name: 'Harvey', age: 65 },
-  { id: 10, Address: 'somaliland',Email:'stark132@gmail.com',Phone:'238567891', Name: 'Stark', age: 20 },
-];
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json())
+      .then(data => {
+        setUsers(data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
-export default function DataTable() {
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'name', headerName: 'Name', width: 130 },
+    { field: 'username', headerName: 'Username', width: 130 },
+    { field: 'email', headerName: 'Email', width: 200 },
+    {
+      field: 'address',
+      headerName: 'Address',
+      width: 300,
+      valueGetter: (params) => {
+        return `${params.row.address.street}, ${params.row.address.suite}, ${params.row.address.city}, ${params.row.address.zipcode}`;
+      },
+    },
+    { field: 'phone', headerName: 'Phone', width: 130 },
+    { field: 'website', headerName: 'Website', width: 200 },
+    {
+      field: 'company',
+      headerName: 'Company',
+      width: 200,
+      valueGetter: (params) => {
+        return params.row.company.name;
+      },
+    },
+  ];
+
+  const pieData = [
+    { type: 'id-1', value: 10 },
+    { type: 'id-2', value: 10 },
+    { type: 'id-3', value: 10 },
+    { type: 'id-4', value: 10 },
+    { type: 'id-5', value: 10 },
+    { type: 'id-6', value: 10 },
+    { type: 'id-7', value: 10 },
+    { type: 'id-8', value: 10 },
+    { type: 'id-9', value: 10 },
+    { type: 'id-10', value: 10 },
+  ];
+
+  const pieConfig = {
+    appendPadding: 10,
+    data: pieData,
+    angleField: 'value',
+    colorField: 'type',
+    radius: 0.9,
+    label: {
+      type: 'inner',
+      offset: '-30%',
+      content: ({ percent }) => `${(percent * 100).toFixed(0)}%`,
+      style: {
+        fontSize: 14,
+        textAlign: 'center',
+      },
+    },
+    interactions: [{ type: 'element-active' }],
+  };
+
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+    <div style={{ display: 'flex' }}>
+      <div style={{ flex: 1, height: 400, width: '50%' }}>
+        <DataGrid rows={users} columns={columns} pageSize={5} checkboxSelection />
+      </div>
+      <div style={{ flex: 1, height: 400, width: '50%' }}>
+        <Pie {...pieConfig} />
+      </div>
     </div>
   );
-}
+};
+
+export default GraphApi;
+
