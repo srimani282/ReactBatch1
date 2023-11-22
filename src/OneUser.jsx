@@ -11,5 +11,5 @@ function OneUser(props) {
         </div>
     </div>)
 }
-export default OneUser;
+export default OneUser; 
 

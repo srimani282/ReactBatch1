@@ -13,6 +13,7 @@ import Graphs from './Graphs';
 import GraphApi from './GraphApi';
 import UIharika from './UIharika';
 import Graph from './Graph';
+import ContextComponent from './ContextApi/ContextComponent';
 
 function App() {
   return (<div className="App">
@@ -29,6 +30,7 @@ function App() {
       <Route path='/graph-api' element={<GraphApi/>}/>
       <Route path='/ui-harika' element={<UIharika/>}/>
       <Route path='/Graph' element={<Graph/>}/>
+      <Route path='/context-component' element={<ContextComponent/>}/>
     </Routes>
   </div>
   );
