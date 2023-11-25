@@ -17,7 +17,7 @@ const WeatherApi = () => {
 
   const fetchData = async () => {
     try {
-      // If cityName is empty, display loading message
+      
       if (!cityName) {
         setWeatherData(null);
         setSearchError(false);
@@ -36,8 +36,8 @@ const WeatherApi = () => {
       const cityCoordinates = [data.coord.lat, data.coord.lon];
       setPosition(cityCoordinates);
 
-      // Center the map on the city coordinates and adjust the zoom level
-      mapRef.current.setView(cityCoordinates, 10); // Adjust the zoom level as needed
+      
+      mapRef.current.setView(cityCoordinates, 10); 
     } catch (error) {
       console.error('Error fetching data:', error);
       setWeatherData(null);
@@ -56,7 +56,7 @@ const WeatherApi = () => {
 
   return (
     <div style={{ display: 'flex' }}>
-      {/* Left side - Table */}
+    
       <div style={{ flex: 1, padding: '20px' }}>
         <form onSubmit={handleSubmit}>
           <label>
@@ -73,7 +73,7 @@ const WeatherApi = () => {
             <h2>{weatherData.name}, {weatherData.sys.country}</h2>
             <p>Temperature: {weatherData.main.temp} °C</p>
 
-            {/* Additional Information Table */}
+        
             <TableContainer component={Paper}>
               <Table>
                 <TableHead>
@@ -95,18 +95,15 @@ const WeatherApi = () => {
                     <TableCell>Max Temperature</TableCell>
                     <TableCell>{weatherData.main.temp_max}</TableCell>
                   </TableRow>
-                  {/* Add more rows for other parameters */}
                 </TableBody>
               </Table>
             </TableContainer>
           </div>
         ) : (
-          // Display "Loading..." when cityName is empty
           cityName ? <div>Loading...</div> : null
         )}
       </div>
 
-      {/* Right side - Map */}
       <div style={{ flex: 1, padding: '20px' }}>
         <div style={{ border: '2px solid #ccc', borderRadius: '5px', overflow: 'hidden' }}>
           <MapContainer center={position} zoom={10} style={{ height: '300px', width: '300%' }} ref={mapRef}>
