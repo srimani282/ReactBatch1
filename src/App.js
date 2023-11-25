@@ -14,6 +14,7 @@ import GraphApi from './GraphApi';
 import UIharika from './UIharika';
 import Graph from './Graph';
 import WeatherApi from './WeatherApi';
+import User from './PageApi/User';
 
 function App() {
   return (<div className="App">
@@ -31,6 +32,7 @@ function App() {
       <Route path='/ui-harika' element={<UIharika/>}/>
       <Route path='/Graph' element={<Graph/>}/>
       <Route path='/weatherApi' element={<WeatherApi/>}/>
+      <Route path='/User' element={<User/>}/>
     </Routes>
   </div>
   );

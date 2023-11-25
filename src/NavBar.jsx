@@ -47,6 +47,9 @@ function NavBar(props){
       <li class="nav-item dropdown mr-3">
         <Link to="WeatherApi">WeatherApi</Link>
       </li>
+      <li class="nav-item dropdown mr-3">
+        <Link to="User">User</Link>
+      </li>
 
     </ul>
     {/* <form class="form-inline my-2 my-lg-0">
