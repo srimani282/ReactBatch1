@@ -50,6 +50,10 @@ function NavBar(props){
       <li class="nav-item dropdown mr-3">
         <Link to="User">User</Link>
       </li>
+      <li class="nav-item dropdown mr-3">
+        <Link to="ReduxComponent">ReduxComponent</Link>
+      </li>
+
 
     </ul>
     {/* <form class="form-inline my-2 my-lg-0">
