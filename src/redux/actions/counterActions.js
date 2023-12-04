@@ -1,16 +1,25 @@
-import { INCREMENT, DECREMENT } from "../actionTypes/actionTypes";
+import { TITLE, SUBTITLE, DESCRIPTION  } from "../actionTypes/actionTypes";
 
-const increment = () => {
-    console.log("iiiii")
+
+const title = (payload) => {
   return {
-    type: INCREMENT,
+    type: TITLE,
+    payload,
   };
 };
 
-const decrement = () => {
+const subtitle = (payload) => {
   return {
-    type: DECREMENT,
+    type: SUBTITLE,
+    payload,
   };
 };
 
-export {increment , decrement };
+const description = (payload) => {
+  return {
+    type: DESCRIPTION,
+    payload,
+  };
+};
+
+export { title, subtitle, description };

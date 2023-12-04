@@ -1,2 +1,3 @@
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
+export const TITLE = "TITLE";
+export const SUBTITLE = "SUBTITLE";
+export const DESCRIPTION = "DESCRIPTION";

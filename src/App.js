@@ -15,13 +15,15 @@ import UIharika from './UIharika';
 import Graph from './Graph';
 import WeatherApi from './WeatherApi';
 import User from './PageApi/User';
-import { Provider } from 'react-redux';
+import {Provider}  from 'react-redux';
 import store from './redux/store';
 import ReduxComponent from './ReduxComponent';
 
 
+
 function App() {
   return (<Provider store={store}>
+
   <div className="App">
     <NavBar/>
     <Routes>
@@ -39,9 +41,11 @@ function App() {
       <Route path='/weatherApi' element={<WeatherApi/>}/>
       <Route path='/User' element={<User/>}/>
       <Route path='/ReduxComponent' element={<ReduxComponent/>}/>
+      
 
     </Routes>
   </div>
+  
   </Provider>
   );
 }

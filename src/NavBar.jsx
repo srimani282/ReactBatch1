@@ -53,6 +53,7 @@ function NavBar(props){
       <li class="nav-item dropdown mr-3">
         <Link to="ReduxComponent">ReduxComponent</Link>
       </li>
+      
 
 
     </ul>

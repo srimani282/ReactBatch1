@@ -1,20 +1,46 @@
+
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Pie } from '@ant-design/plots';
 
+const UserDetails = ({ user }) => (
+  <div>
+    <h2>User Details</h2>
+    <p>Name: {user.name}</p>
+    <p>Username: {user.username}</p>
+    <p>Email: {user.email}</p>
+    {/* Add more details as needed */}
+  </div>
+);
+
 const GraphApi = () => {
   const [users, setUsers] = useState([]);
+  const [pieData, setPieData] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
+    // Fetch user data
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(response => response.json())
       .then(data => {
         setUsers(data);
+        // Prepare pie data based on fetched user data
+        const newData = data.map(user => ({
+          type: user.username,
+          value: 1,
+          userId: user.id,
+        }));
+        setPieData(newData);
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching user data:', error);
       });
   }, []);
+
+  const handlePieClick = (_, data) => {
+    const clickedUserId = data[0]?.data?.userId || null;
+    setSelectedUserId(clickedUserId);
+  };
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -41,19 +67,6 @@ const GraphApi = () => {
     },
   ];
 
-  const pieData = [
-    { type: 'id-1', value: 10 },
-    { type: 'id-2', value: 10 },
-    { type: 'id-3', value: 10 },
-    { type: 'id-4', value: 10 },
-    { type: 'id-5', value: 10 },
-    { type: 'id-6', value: 10 },
-    { type: 'id-7', value: 10 },
-    { type: 'id-8', value: 10 },
-    { type: 'id-9', value: 10 },
-    { type: 'id-10', value: 10 },
-  ];
-
   const pieConfig = {
     appendPadding: 10,
     data: pieData,
@@ -70,6 +83,7 @@ const GraphApi = () => {
       },
     },
     interactions: [{ type: 'element-active' }],
+    onElementClick: handlePieClick,
   };
 
   return (
@@ -79,10 +93,10 @@ const GraphApi = () => {
       </div>
       <div style={{ flex: 1, height: 400, width: '50%' }}>
         <Pie {...pieConfig} />
+        {selectedUserId && <UserDetails user={users.find(user => user.id === selectedUserId)} />}
       </div>
     </div>
   );
 };
 
 export default GraphApi;
-

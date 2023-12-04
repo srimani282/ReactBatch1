@@ -1,20 +1,29 @@
-import { INCREMENT, DECREMENT } from "../actionTypes/actionTypes";
+import { TITLE, SUBTITLE, DESCRIPTION } from "../actionTypes/actionTypes";
 
 const initialState = {
-  counter: 0,
+  title: "",
+  subtitle: "",
+  description: "",
 };
 
 const countertReducer = (state = initialState, action) => {
   console.log(action,"iiii");
   switch (action.type) {
-    case INCREMENT:
+    case TITLE:
       return {
-     counter :state.counter+1
+        ...state,
+        title: action.payload,
       };
 
-    case DECREMENT:
+    case SUBTITLE:
       return {
-        counter :state.counter-1
+        ...state,
+        subtitle: action.payload,
+      };
+      case DESCRIPTION:
+      return {
+        ...state,
+        description: action.payload,
       };
     default:
       return state;
