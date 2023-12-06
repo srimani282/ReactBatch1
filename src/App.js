@@ -14,9 +14,14 @@ import GraphApi from './GraphApi';
 import UIharika from './UIharika';
 import Graph from './Graph';
 import ContextComponent from './ContextApi/ContextComponent';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import ReduxComponent from './ReducComponent';
+import Posts from './Pages/Posts';
 
 function App() {
-  return (<div className="App">
+  return (<Provider store={store}>
+  <div className="App">
     <NavBar/>
     <Routes>
       <Route path="/" element={<Component user={{ name: "Sri MAni", email: "srimani@gmail.com", role: "dev" }} />} />
@@ -31,8 +36,11 @@ function App() {
       <Route path='/ui-harika' element={<UIharika/>}/>
       <Route path='/Graph' element={<Graph/>}/>
       <Route path='/context-component' element={<ContextComponent/>}/>
+      <Route path='/redux-component' element={<ReduxComponent/>}/>
+      <Route path='/posts' element={<Posts/>}/>
     </Routes>
   </div>
+  </Provider>
   );
 }
 

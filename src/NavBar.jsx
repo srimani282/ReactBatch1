@@ -47,6 +47,12 @@ function NavBar(props){
       <li class="nav-item dropdown mr-3">
         <Link  to="context-component">Context Component</Link>
       </li>
+      <li class="nav-item dropdown mr-3">
+        <Link  to="redux-component">Redux Component</Link>
+      </li>
+      <li class="nav-item dropdown mr-3">
+        <Link  to="posts">Posts</Link>
+      </li>
     </ul>
     {/* <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>

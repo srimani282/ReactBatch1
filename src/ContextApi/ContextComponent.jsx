@@ -6,7 +6,7 @@ function ContextComponent (props){
     const [text, setText] = useState("")
     return <div>
         <MyContext.Provider value={{text, setText}}>
-            <ContextChild />
+            <ContextChild />    
         </MyContext.Provider>
     </div>
 }
