@@ -16,6 +16,10 @@ function Posts(props) {
         console.log(formData)
         dispatch(addPost(formData))
     }
+    const handleDelete = (index) => {
+        console.log("Deleting post at index:", index);
+        dispatch(deletePost(index));
+      }
 
     const handleChange = (e) => {
     
@@ -50,6 +54,7 @@ function Posts(props) {
                 return <Box style={{marginTop : "20px"}}>
                     <h3>name : {post.firstName+" "+ post.lastName}</h3>
                     <h2>Address: {post.address}</h2>
+                    <button onClick={() => handleDelete(i)}>Delete</button>
                 </Box>
             })
         }

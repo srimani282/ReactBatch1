@@ -13,10 +13,16 @@ const postReducer = (state = initialState, action) => {
       };
 
     case DELETE_POST:
+     // const updatedPosts = state.postData.filter((post, index) => index !== action.payload);
+      const updatedPosts = state.postData.filter((post, index) => {
+        return index !== action.payload
+        });
       return {
         ...state,
-        counter : state.counter - 1
-       };
+        postData: updatedPosts,
+      };
+      
+       
     default:
       return state;
   }

@@ -7,9 +7,10 @@ const addPost = (data) => {
   };
 };
 
-const deletePost = (data) => {
+const deletePost = (index) => {
   return {
     type: DELETE_POST,
+    payload: index,
   };
 };
 

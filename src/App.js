@@ -18,6 +18,15 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import ReduxComponent from './ReducComponent';
 import Posts from './Pages/Posts';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import PhoneReducer from './redux/reducer/PhoneReducer';
+
+const rootReducer = combineReducers({
+  phones: PhoneReducer,
+});
+
+const hi = createStore(rootReducer, applyMiddleware(thunk));
 
 function App() {
   return (<Provider store={store}>

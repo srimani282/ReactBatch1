@@ -1,14 +1,16 @@
-import { combineReducers, createStore } from "redux";
-import counterReducer from "./reducer/counterReducer";
-import postReducer from "./reducer/postReducer";
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import thunk from 'redux-thunk';
+import postReducer from './reducer/postReducer';
+import PhoneReducer from './reducer/PhoneReducer';
+
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
-    post: postReducer,
-  });
-  
-  // Create store with combined reducers
-const store = createStore(rootReducer);
-  
+
+  post: postReducer,
+  phones: PhoneReducer,
+});
+
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
